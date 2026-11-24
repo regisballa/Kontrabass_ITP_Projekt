@@ -169,3 +169,85 @@ export function pluck(freq) {
 	g.connect(reverb);
 	src.start();
 }
+
+
+// ---------------------------------------------------------------- Ersatz-Musik
+// Nur wenn die Aufnahme fehlt: BWV 1007, Prélude, Takt 1 bis 4, im Browser erzeugt
+const G2 = 43,
+	D3 = 50,
+	E3 = 52,
+	Fs3 = 54,
+	G3 = 55,
+	A3 = 57,
+	B3 = 59,
+	C4 = 60;
+const BAR1 = [G2, D3, B3, A3, B3, D3, B3, D3];
+const BAR2 = [G2, E3, C4, B3, C4, E3, C4, E3];
+const BAR3 = [G2, Fs3, C4, B3, C4, Fs3, C4, Fs3];
+const BAR4a = [G2, G3, B3, A3, B3, G3, B3, G3];
+const BAR4b = [G2, G3, B3, A3, B3, G3, B3, Fs3];
+const SEQ = [...BAR1, ...BAR1, ...BAR2, ...BAR2, ...BAR3, ...BAR3, ...BAR4a, ...BAR4b];
+const STEP = 60 / 66 / 4;
+
+let synthTimer = null;
+let nextTime = 0;
+let step = 0;
+const mtof = (m) => 440 * Math.pow(2, (m - 69) / 12);
+
+function bowed(time, freq, dur, vol) {
+	const g = ctx.createGain();
+	const f = ctx.createBiquadFilter();
+	f.type = 'lowpass';
+	f.frequency.value = 1500 + freq * 3;
+	const lfo = ctx.createOscillator();
+	const lfoGain = ctx.createGain();
+	lfo.frequency.value = 5.2;
+	lfoGain.gain.value = freq * 0.004;
+	lfo.connect(lfoGain);
+	for (const det of [-5, 5]) {
+		const o = ctx.createOscillator();
+		o.type = 'sawtooth';
+		o.frequency.value = freq;
+		o.detune.value = det;
+		lfoGain.connect(o.frequency);
+		o.connect(f);
+		o.start(time);
+		o.stop(time + dur + 0.5);
+	}
+	lfo.start(time);
+	lfo.stop(time + dur + 0.5);
+	g.gain.setValueAtTime(0.0001, time);
+	g.gain.linearRampToValueAtTime(vol, time + 0.05);
+	g.gain.setTargetAtTime(vol * 0.75, time + 0.06, 0.12);
+	g.gain.setTargetAtTime(0.0001, time + dur, 0.09);
+	f.connect(g).connect(synthBus);
+}
+
+function schedule() {
+	if (nextTime < ctx.currentTime - 0.1) nextTime = ctx.currentTime + 0.05;
+	while (nextTime < ctx.currentTime + 0.3) {
+		const first = step % 8 === 0;
+		const pos = (step % 16) / 16;
+		bowed(
+			nextTime,
+			mtof(SEQ[step % SEQ.length]),
+			first ? STEP * 7.6 : STEP * 1.15,
+			first ? 0.14 : 0.22
+		);
+		nextTime += STEP * (1 + 0.06 * Math.pow(pos, 3));
+		step++;
+	}
+}
+
+function startSynth() {
+	if (synthTimer) return;
+	step = 0;
+	nextTime = ctx.currentTime + 0.15;
+	schedule();
+	synthTimer = setInterval(schedule, 80);
+}
+
+function stopSynth() {
+	clearInterval(synthTimer);
+	synthTimer = null;
+}
