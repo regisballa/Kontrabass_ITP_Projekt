@@ -5,7 +5,7 @@
 //    Fehlt die Datei, spielt der Browser eine selbst erzeugte Version (Takt 1 bis 4).
 // 2. Saiten E, A, D, G: gezupfter Ton, live im Browser erzeugt.
 
-import { asset } from '$app/paths';
+import { browser } from '$app/environment';
 
 const AUDIO_FILES = ['audio/bach-prelude.mp3', 'audio/bach-prelude.ogg'];
 
@@ -71,15 +71,18 @@ function tryLoad(url) {
 	});
 }
 
-(async () => {
-	for (const f of AUDIO_FILES) {
-		const el = await tryLoad(f);
-		if (el) {
-			recording = el;
-			return;
+// nur im Browser: auf dem Server (Node.js) gibt es kein Audio
+if (browser) {
+	(async () => {
+		for (const f of AUDIO_FILES) {
+			const el = await tryLoad(f);
+			if (el) {
+				recording = el;
+				return;
+			}
 		}
-	}
-})();
+	})();
+}
 
 let recConnected = false;
 
