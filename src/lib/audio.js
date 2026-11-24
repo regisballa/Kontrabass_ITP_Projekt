@@ -82,3 +82,90 @@ function tryLoad(url) {
 })();
 
 let recConnected = false;
+
+
+// ---------------------------------------------------------------- Musik an/aus
+export function setMusic(on) {
+	setup();
+	playing = on;
+	clearTimeout(fadeTimer);
+	const rec = recording;
+	if (rec && !recConnected) {
+		ctx.createMediaElementSource(rec).connect(recBus);
+		recConnected = true;
+	}
+	const bus = rec ? recBus : synthBus;
+	const t = ctx.currentTime;
+	bus.gain.cancelScheduledValues(t);
+	bus.gain.setValueAtTime(bus.gain.value, t);
+	if (on) {
+		if (rec) rec.play();
+		else startSynth();
+		bus.gain.linearRampToValueAtTime(1, t + 1.0);
+	} else {
+		bus.gain.linearRampToValueAtTime(0, t + 0.8);
+		fadeTimer = setTimeout(() => {
+			if (playing) return;
+			if (rec) rec.pause();
+			else stopSynth();
+		}, 900);
+	}
+}
+
+// Lautstärke der Musik von 0 bis 1
+export function getLevel() {
+	if (!analyser) return 0;
+	analyser.getByteTimeDomainData(levelData);
+	let sum = 0;
+	for (let i = 0; i < levelData.length; i++) {
+		const v = (levelData[i] - 128) / 128;
+		sum += v * v;
+	}
+	return Math.min(1, Math.sqrt(sum / levelData.length) * 4);
+}
+
+export function hasRecording() {
+	return !!recording;
+}
+
+// ---------------------------------------------------------------- Saiten zupfen
+// Karplus-Strong: Rauschen in einer kurzen Schleife wird zu einem Saitenton
+const pluckCache = new Map();
+export function pluck(freq) {
+	setup();
+	let buf = pluckCache.get(freq);
+	if (!buf) {
+		const sr = ctx.sampleRate;
+		const n = Math.floor(sr * 3.5);
+		buf = ctx.createBuffer(1, n, sr);
+		const out = buf.getChannelData(0);
+		const N = Math.round(sr / freq);
+		const line = new Float32Array(N);
+		for (let i = 0; i < N; i++) line[i] = Math.random() * 2 - 1;
+		let idx = 0;
+		for (let i = 0; i < n; i++) {
+			const a = line[idx];
+			const b = line[(idx + 1) % N];
+			line[idx] = (a + b) * 0.5 * 0.9988;
+			out[i] = a;
+			idx = (idx + 1) % N;
+		}
+		pluckCache.set(freq, buf);
+	}
+	const src = ctx.createBufferSource();
+	src.buffer = buf;
+	// Resonanz vom Holzkorpus
+	const body = ctx.createBiquadFilter();
+	body.type = 'peaking';
+	body.frequency.value = 110;
+	body.gain.value = 7;
+	const soft = ctx.createBiquadFilter();
+	soft.type = 'lowpass';
+	soft.frequency.value = 1600;
+	const g = ctx.createGain();
+	g.gain.value = 0.6;
+	src.connect(body).connect(soft).connect(g);
+	g.connect(master);
+	g.connect(reverb);
+	src.start();
+}
