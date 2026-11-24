@@ -49,3 +49,25 @@
 		stroke="currentColor"
 		stroke-width="0.4"
 		fill="currentColor"
+		font-size="4.4"
+		font-family="inherit"
+	>
+		<!-- Gesamthöhe -->
+		<path d="M-14 -68.5 L-14 139 M-17 -68.5 L-11 -68.5 M-17 139 L-11 139" />
+		<path d="M-14 -68.5 L-20 -68.5 M-14 139 L-20 139" stroke-dasharray="1 1" opacity="0.5" />
+		<text x="-17" y="35" transform="rotate(-90 -17 35)" text-anchor="middle" stroke="none">
+			ca. 210 cm
+		</text>
+		<!-- Korpus -->
+		<path d="M82 1 L82 112 M79 1 L85 1 M79 112 L85 112" />
+		<text x="88" y="56" transform="rotate(-90 88 56)" text-anchor="middle" stroke="none">
+			Korpus 111 cm
+		</text>
+		<!-- Mensur: vom Sattel bis zum Steg -->
+		<path d="M100 -45 L100 60 M97 -45 L103 -45 M97 60 L103 60" />
+		<path d="M42 -45 L100 -45 M46 60 L100 60" stroke-dasharray="1 1" opacity="0.5" />
+		<text x="106" y="7.5" transform="rotate(-90 106 7.5)" text-anchor="middle" stroke="none">
+			Mensur 105 cm
+		</text>
+	</g>
+</svg>
