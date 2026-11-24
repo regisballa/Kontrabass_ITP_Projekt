@@ -139,3 +139,36 @@
     </div>
   </section>
 </main>
+
+
+<footer class="bg-ebenholz px-5 py-12 text-[14px] text-kreide-dunkel sm:px-8">
+	<div class="grid gap-8 md:grid-cols-2">
+		<div>
+			<p class="heading text-[28px] text-white">Kontrabass</p>
+			<p class="mt-3">ITP-Projekt „3D-Objekt im Web“, HTL Shkodër 2026<br />Regis Balla</p>
+		</div>
+		<div class="space-y-2 md:text-right">
+			<p>Modell in Blender. Website mit SvelteKit, Threlte, Three.js und Tailwind CSS.</p>
+			<p>
+				Musik: J. S. Bach, Cellosuite Nr. 1 G-Dur, BWV 1007, Prélude. Aufnahme von John Michel
+				(Cello),
+				<a
+					class="underline underline-offset-4 hover:text-white"
+					href="https://commons.wikimedia.org/wiki/File:JOHN_MICHEL_CELLO-J_S_BACH_CELLO_SUITE_1_in_G_Prelude.ogg"
+					target="_blank"
+					rel="noopener"
+				>
+					Wikimedia Commons
+				</a>, für den Kontrabass eine Oktave tiefer bearbeitet. Lizenz
+				<a
+					class="underline underline-offset-4 hover:text-white"
+					href="https://creativecommons.org/licenses/by-sa/3.0/"
+					target="_blank"
+					rel="noopener"
+				>
+					CC BY-SA 3.0
+				</a>.
+			</p>
+		</div>
+	</div>
+</footer>
