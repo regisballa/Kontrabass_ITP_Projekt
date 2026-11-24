@@ -94,3 +94,102 @@ export const FORM_ICON = {
 	gamba:
 		'M35.0 112.0 L39.1 111.8 L43.2 111.3 L47.3 110.3 L51.2 108.9 L54.9 107.1 L58.3 104.7 L61.4 102.0 L63.9 98.7 L65.9 95.1 L67.3 91.2 L67.9 87.1 L68.0 83.0 L67.8 79.1 L67.4 75.1 L66.7 71.2 L65.7 67.4 L64.1 63.8 L61.7 60.8 L59.2 57.8 L57.4 54.4 L57.2 51.0 L57.4 48.1 L57.7 45.1 L58.3 42.2 L58.8 39.6 L59.1 37.1 L59.2 34.5 L59.0 32.0 L58.0 27.8 L56.5 23.7 L54.6 19.8 L52.5 16.0 L50.2 12.3 L47.5 8.9 L44.5 5.7 L41.1 3.0 L37.2 1.2 L32.8 1.2 L28.9 3.0 L25.5 5.7 L22.5 8.9 L19.8 12.3 L17.5 16.0 L15.4 19.8 L13.5 23.7 L12.0 27.8 L11.0 32.0 L10.8 34.5 L10.9 37.1 L11.2 39.6 L11.7 42.2 L12.3 45.1 L12.6 48.1 L12.8 51.0 L12.6 54.4 L10.8 57.8 L8.3 60.8 L5.9 63.8 L4.3 67.4 L3.3 71.2 L2.6 75.1 L2.2 79.1 L2.0 83.0 L2.1 87.1 L2.7 91.2 L4.1 95.1 L6.1 98.7 L8.6 102.0 L11.7 104.7 L15.1 107.1 L18.8 108.9 L22.7 110.3 L26.8 111.3 L30.9 111.8 Z'
 };
+
+// ---------------------------------------------------------------- Hotspots
+// position = Punkt auf dem Modell, normal = Richtung nach aussen
+// dist = Abstand der Kamera beim Heranzoomen
+export const HOTSPOTS = [
+	{
+		id: 'schnecke',
+		title: 'Die Schnecke',
+		dist: 0.55,
+		position: [0.0233, 2.0397, -0.0258],
+		normal: [0.75, 0, 0.66],
+		text: 'Die Schnecke ist das Markenzeichen jedes Streichinstruments. Sie dreht sich 2,3 Mal nach innen und ist aus einem Stück Holz geschnitzt. Für den Klang ist sie nicht wichtig. Sie zeigt das Können des Geigenbauers.',
+		facts: ['Nussbaum', '2,3 Windungen']
+	},
+	{
+		id: 'mechanik',
+		title: 'Die Mechanik',
+		dist: 0.6,
+		position: [0.0535, 1.8746, 0.0374],
+		normal: [1, 0, 0.2],
+		text: 'Ein Kontrabass hat keine Holzwirbel, sondern eine Mechanik aus Metall. Ein kleines Zahnrad übersetzt jede Drehung am Flügel ganz fein. So bleiben die dicken Saiten gut gestimmt.',
+		facts: ['4 Zahnräder', 'Schneckengetriebe']
+	},
+	{
+		id: 'griffbrett',
+		title: 'Griffbrett und Saiten',
+		dist: 0.75,
+		position: [0.0317, 1.1664, 0.2012],
+		normal: [0.2778, 0.157, 0.9477],
+		text: 'Das Griffbrett aus Ebenholz ist 86 cm lang und hat keine Bünde. Die vier Saiten sind E, A, D und G. Tippe auf eine Saite und hör sie dir an.',
+		facts: ['Ebenholz', 'Mensur 105 cm'],
+		strings: true
+	},
+	{
+		id: 'steg',
+		title: 'Der Steg',
+		dist: 0.6,
+		position: [0.0262, 0.825, 0.271],
+		normal: [0.1987, 0, 0.9801],
+		text: 'Der Steg trägt den Druck der Saiten und leitet ihre Schwingung in die Decke. Bei diesem Bass glänzt er golden. Mit den zwei Rädern stellt man die Höhe ein. Das Herz in der Mitte macht den Steg leichter.',
+		facts: ['Goldfarben', '13,5 cm hoch']
+	},
+	{
+		id: 'floch',
+		title: 'Die f-Löcher',
+		dist: 0.65,
+		position: [-0.1652, 0.7505, 0.1261],
+		normal: [-0.0303, 0.0765, 0.9966],
+		text: 'Durch die zwei f-Löcher kommt der Klang aus dem Korpus. Die kleinen Kerben in der Mitte zeigen, wo der Steg stehen muss. Die Decke darum ist leicht gewölbt.',
+		facts: ['Gewölbte Decke', '2,8 cm Wölbung']
+	},
+	{
+		id: 'saitenhalter',
+		title: 'Der Saitenhalter',
+		dist: 0.7,
+		position: [-0.0002, 0.487, 0.1608],
+		normal: [-0.0326, -0.125, 0.9916],
+		text: 'Der Saitenhalter hält die Saiten am unteren Ende. Er hängt an einem Seil, das um den Stachel läuft. Im Konfigurator kannst du das Holz auswählen.',
+		facts: ['32 cm lang', 'Holz wählbar']
+	},
+	{
+		id: 'stachel',
+		title: 'Der Stachel',
+		dist: 0.75,
+		position: [0.0012, 0.16, 0.0109],
+		normal: [0.1951, 0, 0.9808],
+		text: 'Auf dem Stachel steht der ganze Bass. Man kann ihn herausziehen und so die Höhe an den Spieler anpassen. Die Gummispitze verhindert, dass er rutscht.',
+		facts: ['Stahl', '29 cm']
+	},
+	{
+		id: 'boden',
+		title: 'Der Boden',
+		dist: 1.2,
+		position: [-0.12, 0.65, -0.1149],
+		normal: [-0.002, -0, -1],
+		text: 'Der Boden ist flach und oben schräg abgeknickt. Das ist typisch für den Kontrabass. Er ist aus poliertem Nussbaumholz, wie der ganze Korpus.',
+		facts: ['Nussbaum', 'Flacher Boden']
+	}
+];
+
+// Leere Saiten des Kontrabasses (Frequenz in Hz)
+export const STRINGS = [
+	{ name: 'E', node: 'Saite_E', freq: 41.2 },
+	{ name: 'A', node: 'Saite_A', freq: 55.0 },
+	{ name: 'D', node: 'Saite_D', freq: 73.42 },
+	{ name: 'G', node: 'Saite_G', freq: 98.0 }
+];
+
+export const SPECS = [
+	['Größe', '3/4 (Orchester-Standard)'],
+	['Korpuslänge', '111 cm'],
+	['Mensur', '105 cm'],
+	['Gesamthöhe', 'ca. 2,1 m mit Stachel'],
+	['Holz', 'Nussbaum, poliert'],
+	['Griffbrett', 'Ebenholz, 86 cm'],
+	['Steg', 'Goldfarben, mit Höhenverstellern'],
+	['Mechanik', '4 Schneckengetriebe, Altgold'],
+	['3D-Modell', 'ca. 93.000 Dreiecke']
+];
