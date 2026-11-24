@@ -193,3 +193,68 @@ export const SPECS = [
 	['Mechanik', '4 Schneckengetriebe, Altgold'],
 	['3D-Modell', 'ca. 93.000 Dreiecke']
 ];
+
+
+// Bogen: Ruheplatz und Spielposition auf den Saiten (aus Blender berechnet)
+// rest/play = Mittelpunkt des Bogens, quat = Drehung beim Spielen, dir = Richtung entlang des Bogens
+export const BOW = {
+	rest: [0.6, 1.02, 0.14],
+	play: [0.0502, 0.9119, 0.2671],
+	quat: [0.5717, 0.21963, -0.47483, 0.63203],
+	dir: [0.9988, -0.0499, 0.0],
+	stroke: 0.16, // halbe Strichlänge in Metern
+	period: 3.1 // Sekunden für einmal Abstrich und Aufstrich
+};
+
+// Explosionsansicht: wohin jedes Teil fliegt (in Metern: x = rechts, y = oben, z = vorne)
+export const EXPLODE = {
+	Korpus: [0, 0, 0],
+	Griffbrett: [0, 0.04, 0.28],
+	Sattel: [0, 0.1, 0.3],
+	Hals: [0, 0.12, -0.15],
+	Wirbelkasten: [0, 0.22, -0.15],
+	Schnecke: [0, 0.3, -0.15],
+	Mechanik: [0.25, 0.22, -0.1],
+	Steg: [0, 0, 0.38],
+	Steg_Einsteller: [0, 0.04, 0.38],
+	Saitenhalter: [0, -0.04, 0.5],
+	Saitenhalterseil: [0, -0.1, 0.45],
+	Untersattel: [0, -0.1, 0.3],
+	Saite_E: [0, 0.02, 0.6],
+	Saite_A: [0, 0.02, 0.6],
+	Saite_D: [0, 0.02, 0.6],
+	Saite_G: [0, 0.02, 0.6],
+	Stachel: [0, -0.12, 0]
+};
+export const EXPLODE_LIFT = 0.12; // alles schwebt etwas nach oben, nur der Stachel bleibt am Boden
+export const EXPLODE_VIEW = { position: [-1.87, 1.5, 3.18], target: [0.05, 1.25, 0.2] };
+
+// ---------------------------------------------------------------- Renderings
+// Bilder liegen in static/images (aus Blender, 1280 x 1600 Pixel)
+export const RENDERINGS = [
+	{
+		file: 'render_vorne.jpg',
+		title: 'Gesamtansicht von vorne',
+		alt: 'Der Kontrabass von vorne vor dem roten Vorhang'
+	},
+	{
+		file: 'render_buehne.jpg',
+		title: 'Gesamtansicht auf der Bühne',
+		alt: 'Der Kontrabass mit Bogen auf dem Parkett der Bühne'
+	},
+	{
+		file: 'render_oben.jpg',
+		title: 'Andere Perspektive: von oben',
+		alt: 'Der Kontrabass schräg von oben gesehen'
+	},
+	{
+		file: 'render_detail_steg.jpg',
+		title: 'Detail: Steg und Saiten',
+		alt: 'Nahaufnahme vom goldenen Steg, dem f-Loch und den Saiten'
+	},
+	{
+		file: 'render_detail_saitenhalter.jpg',
+		title: 'Detail: f-Loch und Saitenhalter',
+		alt: 'Nahaufnahme vom unteren Korpus mit f-Loch und Saitenhalter'
+	}
+];
