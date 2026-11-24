@@ -1,0 +1,88 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------ Farben und Schrift
+   Idee: ein Konzertsaal. Heller, warmer Stein wie im Foyer, dunkle Bühne für die Bilder.
+   Rot ist das Rot vom Vorhang aus Blender und kommt nur dort vor,
+   wo man etwas auswählt oder etwas markiert ist.
+   Eine einzige Schrift (Archivo) in zwei Breiten: sehr schmal für die großen
+   Überschriften (schmal und hoch wie der Bass), normal für den Text. */
+@theme {
+	--font-sans: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+
+	--color-kreide: #e0dad2;
+	--color-kreide-hell: #ebe6df;
+	--color-kreide-dunkel: #c8bfb4;
+	--color-ebenholz: #1f1b19;
+	--color-grau: #615850;
+	--color-lack: #9b1d2a;
+	--color-nacht: #191211;
+}
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+	}
+	body {
+		@apply bg-kreide font-sans text-[16px] leading-[1.55] text-ebenholz antialiased;
+		font-stretch: 100%;
+	}
+	:focus-visible {
+		outline: 2px solid var(--color-lack);
+		outline-offset: 3px;
+	}
+	::selection {
+		background: var(--color-lack);
+		color: white;
+	}
+}
+
+/* ------------------------------------------------------------------ Überschriften und Knöpfe */
+@layer components {
+	/* der große, schmale Name */
+	.display {
+		font-stretch: 62%;
+		font-weight: 820;
+		letter-spacing: -0.01em;
+		line-height: 0.8;
+	}
+	.heading {
+		font-stretch: 72%;
+		font-weight: 720;
+		letter-spacing: -0.005em;
+		line-height: 0.95;
+	}
+
+	/* Ansichten und Licht im Viewer: einfache Textknöpfe mit Unterstrich */
+	.tab {
+		@apply relative py-1 text-[15px] text-grau transition-colors hover:text-ebenholz;
+	}
+	.tab::after {
+		content: '';
+		@apply absolute right-0 -bottom-0.5 left-0 h-[2px] scale-x-0 bg-lack transition-transform;
+	}
+	.tab-on {
+		@apply text-ebenholz;
+	}
+	.tab-on::after {
+		@apply scale-x-100;
+	}
+	.night .tab {
+		@apply text-kreide-dunkel hover:text-white;
+	}
+	.night .tab-on {
+		@apply text-white;
+	}
+
+	/* Knöpfe oben rechts im Viewer */
+	.pill {
+		@apply rounded-full bg-nacht/70 px-4 py-2 text-[14px] text-white ring-1 ring-white/15 backdrop-blur transition-colors hover:bg-nacht;
+	}
+	.pill-on {
+		@apply bg-lack ring-lack hover:bg-lack;
+	}
+}

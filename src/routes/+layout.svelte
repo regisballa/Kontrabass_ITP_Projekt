@@ -1,7 +1,7 @@
 <script>
 	// Rahmen für jede Seite: Schrift, Stil, Titel und Symbol im Browser-Tab
 	import '@fontsource-variable/archivo/wdth.css';
-	import './layout.css';
+	import '../app.css';
 	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
