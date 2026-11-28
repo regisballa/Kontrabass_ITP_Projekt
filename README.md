@@ -9,7 +9,7 @@ ITP-Projekt „3D-Objekt im Web“ an der HTL Shkodër, 2026. Regis Balla.
 
 Der Kontrabass steht allein auf einer kleinen Bühne mit rotem Vorhang und Parkettboden, wie vor einem Konzert.
 Man kann um ihn herumgehen, ihn von nah ansehen, seine Teile kennenlernen und ihn selbst zusammenstellen.
-Wenn man die Musik startet, spielt er zwei Stücke aus Bachs Cellosuiten, und der Bogen streicht über die Saiten.
+Wenn man die Musik startet, spielt er ein Stück aus Bachs Cellosuiten (Prélude oder Bourrées), und der Bogen streicht über die Saiten.
 
 ## Das 3D-Modell
 
