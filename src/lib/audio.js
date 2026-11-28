@@ -1,6 +1,6 @@
 // Töne für die Website (Web Audio API).
 //
-// 1. Musik: J. S. Bach, Cellosuite Nr. 1 (Prélude) und Nr. 3 (Bourrées), nacheinander.
+// 1. Musik: J. S. Bach, Cellosuite Nr. 1 (Prélude) oder Nr. 3 (Bourrées), zum Auswählen.
 //    Die Website spielt die Aufnahmen aus dem Ordner static/audio/.
 //    Fehlt die Datei, spielt der Browser eine selbst erzeugte Version (Takt 1 bis 4).
 // 2. Saiten E, A, D, G: gezupfter Ton, live im Browser erzeugt.
@@ -62,21 +62,22 @@ function setup() {
 // Nur wenn die Datei wirklich fehlt (Fehler beim Laden), spielt die Ersatz-Musik.
 let recordingOk = true;
 
-// zwei Stücke: zuerst das Prélude, dann die Bourrées, dann wieder von vorne
+// zwei Stücke zur Auswahl: 0 = Prélude, 1 = Bourrées
 const STUECKE = ['audio/bach-prelude.mp3', 'audio/bach-bourree.mp3'];
-let stueck = 0;
 
 // nur im Browser: auf dem Server (Node.js) gibt es kein Audio
 if (browser) {
 	recording = new Audio(asset(STUECKE[0]));
 	recording.preload = 'auto';
+	recording.loop = true;
 	recording.addEventListener('error', () => (recordingOk = false));
-	// wenn ein Stück fertig ist, kommt das nächste
-	recording.addEventListener('ended', () => {
-		stueck = (stueck + 1) % STUECKE.length;
-		recording.src = asset(STUECKE[stueck]);
-		recording.play();
-	});
+}
+
+// anderes Stück wählen. Läuft die Musik schon, spielt gleich das neue Stück.
+export function setStueck(nr) {
+	if (!recording) return;
+	recording.src = asset(STUECKE[nr]);
+	if (playing && recordingOk) recording.play();
 }
 
 let recConnected = false;
