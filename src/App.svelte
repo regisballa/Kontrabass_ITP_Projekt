@@ -49,7 +49,7 @@
       <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5z" /></svg>
     {/if}
     <span>{ui.music ? 'Musik anhalten' : 'Musik abspielen'}</span>
-    <span class="hidden opacity-60 lg:inline">{ui.music && !echt ? 'Ersatz, Datei fehlt' : 'Bach, Suite Nr. 1'}</span>
+    <span class="hidden opacity-60 lg:inline">{ui.music && !echt ? 'Ersatz, Datei fehlt' : 'Bach, Cellosuiten'}</span>
   </button>
 </header>
 
@@ -148,18 +148,24 @@
 			<p class="mt-3">ITP-Projekt „3D-Objekt im Web“, HTL Shkodër 2026<br />Regis Balla</p>
 		</div>
 		<div class="space-y-2 md:text-right">
-			<p>Modell in Blender. Website mit SvelteKit, Threlte, Three.js und Tailwind CSS.</p>
 			<p>
-				Musik: J. S. Bach, Cellosuite Nr. 1 G-Dur, BWV 1007, Prélude. Aufnahme von John Michel
-				(Cello),
-				<a
+				Musik: J. S. Bach, Cellosuite Nr. 1, BWV 1007, Prélude und Cellosuite Nr. 3, BWV 1009,
+				Bourrées. Aufnahmen von John Michel (Cello), Wikimedia Commons (<a
 					class="underline underline-offset-4 hover:text-white"
 					href="https://commons.wikimedia.org/wiki/File:JOHN_MICHEL_CELLO-J_S_BACH_CELLO_SUITE_1_in_G_Prelude.ogg"
 					target="_blank"
 					rel="noopener"
 				>
-					Wikimedia Commons
-				</a>, für den Kontrabass eine Oktave tiefer bearbeitet. Lizenz
+					Prélude
+				</a>,
+				<a
+					class="underline underline-offset-4 hover:text-white"
+					href="https://commons.wikimedia.org/wiki/File:JOHN_MICHEL_CELLO-J_S_BACH_CELLO_SUITE_3_in_G_Bourees.ogg"
+					target="_blank"
+					rel="noopener"
+				>
+					Bourrées
+				</a>), für den Kontrabass eine Oktave tiefer bearbeitet. Lizenz
 				<a
 					class="underline underline-offset-4 hover:text-white"
 					href="https://creativecommons.org/licenses/by-sa/3.0/"

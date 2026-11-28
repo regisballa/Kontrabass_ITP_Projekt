@@ -9,7 +9,7 @@ ITP-Projekt „3D-Objekt im Web“ an der HTL Shkodër, 2026. Regis Balla.
 
 Der Kontrabass steht allein auf einer kleinen Bühne mit rotem Vorhang und Parkettboden, wie vor einem Konzert.
 Man kann um ihn herumgehen, ihn von nah ansehen, seine Teile kennenlernen und ihn selbst zusammenstellen.
-Wenn man die Musik startet, spielt er das Prélude aus Bachs Cellosuite Nr. 1, und der Bogen streicht über die Saiten.
+Wenn man die Musik startet, spielt er zwei Stücke aus Bachs Cellosuiten, und der Bogen streicht über die Saiten.
 
 ## Das 3D-Modell
 
@@ -49,7 +49,7 @@ Dazu gibt es:
   Beim Griffbrett kann man die Saiten E, A, D und G anhören, und die Saite schwingt im Modell.
 - **Teile zeigen:** Der Bass fliegt langsam in seine 17 Teile auseinander und wieder zusammen.
 - **Licht:** Bühnenlicht mit zwei Scheinwerfern und Schatten, oder Kerzenlicht mit flackernden Kerzen.
-- **Musik:** Bach, Cellosuite Nr. 1, Prélude, eine Oktave tiefer, damit es wie ein Kontrabass klingt.
+- **Musik:** Bach, Cellosuite Nr. 1 (Prélude) und Nr. 3 (Bourrées), eine Oktave tiefer, damit es wie ein Kontrabass klingt.
   Solange die Musik läuft, liegt der Bogen auf den Saiten und streicht passend zur Lautstärke.
 - **Drehteller:** Nach 10 Sekunden ohne Maus dreht sich der Bass langsam von selbst.
 - **Bild speichern:** speichert den Bass so, wie er gerade aussieht, als PNG.
@@ -85,7 +85,7 @@ npm run dev
 
 ## Quellen
 
-Musik: J. S. Bach, Cellosuite Nr. 1 G-Dur, BWV 1007, Prélude. Aufnahme von John Michel (Cello),
-[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:JOHN_MICHEL_CELLO-J_S_BACH_CELLO_SUITE_1_in_G_Prelude.ogg),
-Lizenz [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
-Für dieses Projekt eine Oktave tiefer bearbeitet. Die bearbeitete Datei steht ebenfalls unter CC BY-SA 3.0.
+Musik: J. S. Bach, Cellosuite Nr. 1 G-Dur, BWV 1007, [Prélude](https://commons.wikimedia.org/wiki/File:JOHN_MICHEL_CELLO-J_S_BACH_CELLO_SUITE_1_in_G_Prelude.ogg)
+und Cellosuite Nr. 3 C-Dur, BWV 1009, [Bourrées](https://commons.wikimedia.org/wiki/File:JOHN_MICHEL_CELLO-J_S_BACH_CELLO_SUITE_3_in_G_Bourees.ogg).
+Aufnahmen von John Michel (Cello), Wikimedia Commons, Lizenz [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+Für dieses Projekt eine Oktave tiefer bearbeitet. Die bearbeiteten Dateien stehen ebenfalls unter CC BY-SA 3.0.
