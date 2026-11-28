@@ -12,11 +12,8 @@ export default defineConfig({
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
-			// adapter-static macht aus der Seite normale Dateien (Ordner "build") für GitHub Pages
-			adapter: adapter(),
-			// Auf GitHub Pages liegt die Seite in einem Unterordner (/name-vom-repository).
-			// Den Namen setzt die GitHub Action beim Bauen. Am eigenen Computer bleibt es leer.
-			paths: { base: process.env.BASE_PATH ?? '' }
+			// adapter-static macht aus der Seite normale Dateien (Ordner "build") für Vercel
+			adapter: adapter()
 		})
 	],
 	build: { chunkSizeWarningLimit: 1500 }

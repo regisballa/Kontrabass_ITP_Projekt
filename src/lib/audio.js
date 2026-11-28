@@ -5,9 +5,8 @@
 //    Fehlt die Datei, spielt der Browser eine selbst erzeugte Version (Takt 1 bis 4).
 // 2. Saiten E, A, D, G: gezupfter Ton, live im Browser erzeugt.
 
+import { asset } from '$app/paths';
 import { browser } from '$app/environment';
-
-const AUDIO_FILES = ['audio/bach-prelude.mp3', 'audio/bach-prelude.ogg'];
 
 let ctx = null;
 let master, analyser, recBus, synthBus, reverb;
@@ -59,29 +58,16 @@ function setup() {
 }
 
 // ---------------------------------------------------------------- Aufnahme laden
-// Gleich beim Start schauen, ob die Datei da ist (ohne Ton abzuspielen)
-function tryLoad(url) {
-	return new Promise((resolve) => {
-		const el = new Audio();
-		el.preload = 'auto';
-		el.loop = true;
-		el.addEventListener('loadedmetadata', () => resolve(el), { once: true });
-		el.addEventListener('error', () => resolve(null), { once: true });
-		el.src = asset(url);
-	});
-}
+// Das <audio>-Element gleich beim Start anlegen. Der Browser lädt die Datei im Hintergrund.
+// Nur wenn die Datei wirklich fehlt (Fehler beim Laden), spielt die Ersatz-Musik.
+let recordingOk = true;
 
 // nur im Browser: auf dem Server (Node.js) gibt es kein Audio
 if (browser) {
-	(async () => {
-		for (const f of AUDIO_FILES) {
-			const el = await tryLoad(f);
-			if (el) {
-				recording = el;
-				return;
-			}
-		}
-	})();
+	recording = new Audio(asset('audio/bach-prelude.mp3'));
+	recording.preload = 'auto';
+	recording.loop = true;
+	recording.addEventListener('error', () => (recordingOk = false));
 }
 
 let recConnected = false;
@@ -92,7 +78,7 @@ export function setMusic(on) {
 	setup();
 	playing = on;
 	clearTimeout(fadeTimer);
-	const rec = recording;
+	const rec = recordingOk ? recording : null;
 	if (rec && !recConnected) {
 		ctx.createMediaElementSource(rec).connect(recBus);
 		recConnected = true;
@@ -128,7 +114,7 @@ export function getLevel() {
 }
 
 export function hasRecording() {
-	return !!recording;
+	return !!recording && recordingOk;
 }
 
 // ---------------------------------------------------------------- Saiten zupfen
